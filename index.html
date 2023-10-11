@@ -7,36 +7,208 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
   <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <link rel="stylesheet" href="css/style.css" media="all">
+  <link rel="stylesheet" href="css/layout.css" media="all">
 
   <!-- Import pure.css -->
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
     integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <div class="page">
+    <!-- Title -->
+    <h1 class="title">Covid-19</h1>
 
+    <!-- Introduction -->
+    <p>The coronavirus, also known as COVID-19, is a highly contagious viral infection 
+      caused by the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). 
+      It was first identified in Wuhan, China, in December 2019 and has since spread globally, 
+      leading to a pandemic.</p>
+
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+    <!-- World map -->
     <div class="pure-g">
-      <div class="pure-u-1-2">
+      <div class="pure-u-1-1">
         <div id="choropleth_map" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <p>Choropleth Map</p>
       </div>
     </div>
 
+    <!-- empty block -->
+    <div style="height: 50px;"></div>
+
+    <!-- Subtitle -->
+    <h3>Click to highlight interested country</h3>
+
+    <!-- World map explanation -->
+    <p>
+      In 2023,
+      <span class="countries_high_case">Magnolia, Australia, Austria, France, Slavonia, Germany, 
+      and Italy  </span> are among the countries with the 
+      <span style="font-weight:bold">highest COVID-19 active cases</SPAN> per 10,000 population. 
+    </p>
+    <p>
+      <span class="countries_low_case">Antarctica and Turkmenistan </span> have the <span style="font-weight:bold">fewest COVID-19 active cases</span> per 10,000 population.
+    </p>
+    <p>Countries like France, Germany, and Italy have the highest COVID-19 cases 
+      due to their high population densities and international connectivity (tourism).
+      Conversely, Antarctica's lack of permanent human population have led to the lowest case numbers
+    </p>
+
+    <!-- empty block -->
+    <div style="height: 40px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Stay-at-home policy stacked bar chart  -->
     <div class="pure-g">
       <div class="pure-u-1-2">
-        <p>Stacked Bar Chart</p>
+        <h2>Policy Responses: <span style="color:#A664B3">Stay-at-Home Restriction</span></h2>
+        <h3>Proportion of Countries with Various COVID-19 Policy Responses in 
+          Year 2020, 2021 and 2022</h3>
+        <p>
+          In 2020 and 2021, the majority of countries implemented 
+          <span style="color:#A664B3" class="italic_bold">stay-at-home policies</span>.
+          Subsequently, a significant number of countries strongly 
+          <span style="color:#2FBCB3" class="italic_bold">recommend</span> citizen to stay at home without mandatory regulations.
+        </p>
+        <p>
+          However, by 2023, the COVID-19 situation had improved significantly with widespread vaccination, leading many countries to adopt a 
+          <span class="italic_bold">No-measures policy</span>
+        </p>
+
       </div>
       <div class="pure-u-1-2">
         <div id="stay_at_home_bar" class="vis-container"></div>
       </div>
     </div>
 
-    <div id="malaysia_choropleth_map" class="vis-container"></div>
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Death for Continents - Donut Chart  -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="continent_death_donut" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <h2 class="right_aligned">Deaths due to Covid-19 by Continent</h2>
+        <h3 class="right_aligned">COVID-19 Deaths Compared Across Continents</h3>
+        <p class="right_aligned">
+          <span style="color:#D84755" class="italic_bold">South America</span> has the highest COVID-19 death rate at approximately 38 deaths per 10,000 population, followed by 
+          <span style="color:#54C4F5" class="italic_bold">North America</span> with around 27 deaths per 10,000 population. 
+        </p>
+        <p class="right_aligned">
+          In contrast, <span style="color:#E99E45" class="italic_bold">Africa</span> reports the lowest death rate at just 2 per 10,000 population.
+        </p>
+
+      </div>
+    </div>
+
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- Continent cases vs recovered -->
+    <h2 style="text-align:center;">Comparison of COVID-19 Cases and Recoveries by Continent</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="continent_connected_dot_plot" class="vis-container"></div>
+      </div>
+    </div>
+
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- Subtitle -->
+    <h3>Total number of recoveries vs number of confirmed Covid-19 cases per 10,000 population in each Continent</h3>
+
+    <!-- Connected dot plot explanation -->
+    <p>
+      <span style="color:#E4CE21" class="italic_bold">Europe</span> has the largest gap between total cases and the number of recoveries.
+    </p>
+    <!-- empty block -->
+    <div style="height: 50px;"></div>
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- Title -->
+    <h1 class="small_title">A look into Malaysia Covid-19 Situation</h1>
+
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- Malaysia Choropleth map -->    
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="malaysia_choropleth_map" class="vis-container"></div>
+      </div>
+    </div>
+
+    <!-- empty block -->
+    <div style="height: 30px;"></div>
+
+    <!-- Subtitle -->
+    <h3>Confirmed active Covid-19 cases per 10,000 population across different state in Malaysia for year 2023</h3>
+
+    <!-- Malaysia Map explanation -->
+    <p>
+      In 2023, within Malaysia, <span class="italic_bold">Kuala Lumpur</span> records the highest rate of COVID-19 cases per 10,000 population, with 17 individuals out of every 10,000 testing positive.
+    </p>
+
+    <!-- empty block -->
+    <div style="height: 50px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- Heat map -->
+    <h2 style="text-align:center;">Daily new cases in Malaysia (Year 2020, 2021 and 2022)</h2>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="malaysia_new_case_heat_map" class="vis-container"></div>
+      </div>
+    </div>
+
+    <h3 style="text-align:center; font-style:normal;">Please select an interested Year to compare daily Covid-19 cases in that particular year </h3>
+
+    <!-- empty block -->
+    <div style="height: 50px;"></div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- Interactive line chart -->
+    <h2 style="text-align:center;">Analyzing the Impact of Vaccination Counts on COVID-19 Daily New Cases</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="malaysia_interactive_line" class="vis-container"></div>
+      </div>
+    </div>
+
+    <!-- empty block -->
+    <div style="height: 20px;"></div>
+
+    <!-- Subtitle -->
+    <h3>Tracking COVID-19 Daily New Cases and Vaccination Counts Over Time </h3>
+
+    <!-- Line chart explanation -->
+    <p>
+      The peak daily new COVID-19 cases were observed in approximately August 2021 and March 2022. Daily vaccination rates reached their peak around August 2021, coinciding with a significant drop in daily COVID-19 cases as vaccination efforts intensified.
+    </p>
+
+    <!-- empty block -->
+    <div style="height: 50px;"></div>
+
+    <h3 style="text-align:center; font-style:normal;">Jing Wei Loh | FIT3179 </h3>
 
   </div>
 
@@ -58,6 +230,25 @@
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 
+  var specVis4 = "js/continent_case_vs_recovered.vg.json";
+  vegaEmbed('#continent_connected_dot_plot', specVis4).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  var specVis5 = "js/malaysia_new_case.vg.json";
+  vegaEmbed('#malaysia_new_case_heat_map', specVis5).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  var specVis6 = "js/continent_death.vg.json";
+  vegaEmbed('#continent_death_donut', specVis6).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  var specVis7 = "js/malaysia_interactive_line.vg.json";
+  vegaEmbed('#malaysia_interactive_line', specVis7).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
 
 </script>
 

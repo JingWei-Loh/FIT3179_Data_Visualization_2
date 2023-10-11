@@ -1,44 +1,63 @@
-body *{
-    font-family: 'Open Sans', sans-serif;
+
+* {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+
 }
 
-h1 {
-    font-weight: 900;
+h2 {
+    color:#3C3C3C;
+    font-weight:500;
 }
 
-body {
-    background-color: lightgray;
+h3 {
+    font-size:14px;
+    color:#747474;
+    font-weight:400;  
+    font-style: italic;  
 }
 
-.page {
-    width: 700px;
-    background-color: white;
-    margin: auto;
-    padding: 50px;
-    padding-top: 35px;
+p {
+    font-size: 16px;
+    color:#3C3C3C;
+    font-weight:300;
 }
 
-.vis-container {
-    width: 100%;
+.title {
+    font-size: 50px;
+    text-align: center;
 }
 
-.description h2,
-h1 {
-    margin-top: 0px;
+.small_title {
+    font-size: 30px;
+    text-align: center;
 }
 
-.description-right {
-    padding-left: 20px;
+.right_aligned {
+    text-align:right
 }
 
-.description-left {
-    padding-right: 20px;
+.countries_high_case {
+    color: #234EA0;
+    font-style: italic;  
+    font-weight:500;
 }
 
-.pure-g {
-    margin-bottom: 40px;
+.countries_low_case {
+    color: #35B256;
+    font-style: italic;  
+    font-weight:500;
 }
 
-.small-font {
-    font-size: 14px;
+.first_word {
+    color: black;
+    font-style: bold;  
+    font-weight:500; 
+    font-size: 20px;   
 }
+
+.italic_bold {
+    font-style: italic;  
+    font-weight:500;
+}
+

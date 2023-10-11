@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/continent_cases_recovered.csv"
+  },
+  "height": 150,
+  "width": "container",
+  "encoding": {
+    "x": {
+      "field": "Cases_per_10000",
+      "type": "quantitative",
+      "title": "Number of Cases per 10,000 population"
+    },
+    "y": {"field": "Continent", "type": "nominal"}
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "detail": {"field": "Continent", "type": "nominal"},
+        "color": {"value": "#d3d3d3"}
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "policy_highlight",
+          "select": {"type": "point", "fields": ["policy"]},
+          "bind": "legend"
+        },
+        {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+      ],
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "color": {
+          "field": "Type",
+          "type": "ordinal",
+          "scale": {
+            "domain": ["Total Recovered", "Total Cases"],
+            "range": ["#91c8e4", "#749bc2"]
+          },
+          "title": "Type of Case"
+        },
+        "size": {
+          "condition": [{"param": "highlight", "empty": false, "value": 180}],
+          "value": 80
+        },
+        "opacity": {"value": 0.7},
+        "tooltip": [
+          {"field": "Continent", "title": "Continent", "type": "nominal"},
+          {"field": "Type", "title": "Type of Case", "type": "nominal"},
+          {
+            "field": "Cases_per_10000",
+            "title": "Cases per 10,000 population",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+      
+    },
+        {
+      "transform": [
+        {"filter":"datum.Continent == 'Europe'"},
+        {"filter":"datum.Type == 'Total Recovered'"},
+        {
+            "calculate": "'Europe ;has the biggest; gap between; case and recovery'",
+            "as": "annotation_ori"
+        },
+        {
+            "calculate": "split(datum.annotation_ori,';')",
+            "as": "annotation"
+        }
+      ],
+      "encoding": {
+        "text": {"field": "annotation"},
+        "color": {"value": "black"},
+        "size": {"value": 10}
+      },
+      "mark": {"type": "text", "dx": 20, "dy": -50}
+    }
+  ],
+  "config": {
+    "background": "#FFFBF7",
+    "font": "Poppins",
+    "padding": {"top": 10, "bottom": 10, "left": 30, "right": 30},
+    "view": {"stroke": null},
+    "title": {"fontSize": 20, "offset": 20},
+    "axis": {
+      "titleFontSize": 12,
+      "labelFontSize": 12,
+      "labelColor": "gray",
+      "title": null
+    },
+    "axisX": {
+      "orient": "top",
+      "offset": 5,
+      "domain": false,
+      "ticks": false,
+      "titlePadding": 12
+    },
+    "axisY": {
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 20,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "titleFontSize": 12,
+      "titleColor": "gray",
+      "labelColor": "gray",
+      "direction": "vertical",
+      "orient": "right"
+    },
+    "rect": {"width": 20, "height": 15, "stroke": "black"},
+    "text": {"fontSize": 12}
+  }
+}

@@ -1,0 +1,123 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/malaysia_cases_2.csv"
+    },
+
+    "width": "container",
+    "params": [
+      {
+        "name": "Year_selection",
+        "bind": {
+          "input": "select",
+          "options": ["2020", "2021", "2022"],
+          "labels": ["2020", "2021", "2022"],
+          "name": "Year Selection: "
+        }
+      },
+      {
+        "name": "highlight",
+        "select": {
+        "type": "point",
+        "on": "mouseover"
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "Year_selection==null? datum.Year==2020 : datum.Year ==  Year_selection"
+      }
+    ],
+    "mark": "rect",
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "timeUnit": "date",
+        "type": "ordinal",
+        "axis": {"labelAngle": 0, "format": "%e"}
+      },
+      "y": {
+        "field": "Date",
+        "timeUnit": "month",
+        "type": "ordinal"
+      },
+      "color": {
+        "field": "New_case_per_10000",
+        "type": "quantitative",
+        "legend": {
+          "title": ["Cases per", " 10,000 population"]
+        },
+        "scale": {"type": "log"}
+      },
+      "tooltip": [
+        {"field": "Date", "title": "Date", "timeUnit": "yearmonthdate"},
+        {
+          "field": "New_case_per_10000",
+          "title": "New cases per 10,000 population",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      ],
+      "strokeWidth": {
+        "condition": [
+          {
+          "param": "highlight",
+          "empty": false,
+          "value": 1
+          }
+        ],
+        "value": 0.1
+      }
+    },
+    "config": {
+      "font": "Poppins",
+      "background": "#FFFBF7",
+      "padding": {
+        "top": 10,
+        "bottom": 10,
+        "left": 30,
+        "right": 30
+      },
+      "view": {"stroke": null},
+      "axis": {
+        "grid": false,
+        "labelColor": "gray",
+        "labelFontSize": 12,
+        "title": null
+      },
+      "axisX": {
+        "orient": "top",
+        "offset": 5,
+        "domain": false,
+        "ticks": false
+      },
+      "axisY": {
+        "domain": false,
+        "ticks": false,
+        "labelAlign": "left",
+        "labelPadding": 30
+      },
+      "legend": {
+        "titleFontSize": 12,
+        "titleColor": "gray",
+        "labelColor": "gray",
+        "direction": "vertical",
+        "orient": "right",
+        "gradientLength": 120,
+        "gradientThickness": 10,
+        "gradientLabelOffset": 5
+      },
+      "rect": {
+        "width": 20,
+        "height": 15,
+        "stroke": "black"
+      },
+      "text": {
+        "fontSize": 13
+      },
+      "title": {
+        "fontSize": 20,
+        "offset": 20
+      }
+    }
+  }

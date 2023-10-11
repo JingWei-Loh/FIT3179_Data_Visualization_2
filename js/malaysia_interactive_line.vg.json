@@ -1,0 +1,284 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Multi-series Line Chart with Halo. Use pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes. See https://github.com/vega/vega-lite/issues/6192 for more discussion.",
+    "data": {"url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/malaysia_vaccines_2.csv"},
+  
+    "vconcat": [
+      {
+        "width": "container",
+        "height": 300,
+        "transform": [{
+          "pivot": "Type",
+          "value": "Number_per_10000",
+          "groupby": ["Date"]
+        }],
+        "layer": [
+
+          {
+            "mark": {
+              "type": "line",
+              "size": 3
+            },
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "scale": {"domain": {"param": "time_brush"}},
+                "axis": {"title": null, "tickCount": 6, "grid": false}
+              },
+              "y": { 
+                "field": "Dose",
+                "type": "quantitative", 
+                "title": "Count per 10,000 Population"
+              },
+              "stroke":{
+                "field":"Type",
+                "scale":{
+                  "range":["#2FBCB3"]
+                },
+                "legend":{
+                  "orient": "none",
+                  "labelExpr": "'Daily Vaccinations Count'",
+                  "labelFontSize": 12,
+                  "title": null,
+                  "symbolSize": 500,
+                  "symbolStrokeWidth": 3,
+                  "legendY": 490,
+                  "legendX": -3
+                }
+              }
+            }
+          },
+
+          {
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "scale": {"domain": {"param": "time_brush"}},
+                "axis": {"title": "Date", "tickCount": 6, "grid": false}
+              },
+              "y": { 
+                "field": "Dose",
+                "type": "quantitative", 
+                "title": "Count per 10,000 Population"
+              },
+              "tooltip": [
+                {
+                  "field": "Date",
+                  "title": "Date",
+                  "timeUnit": "yearmonthdate"
+                },
+                {
+                  "field": "New_case",
+                  "title": "Number of New Cases"
+                },
+                {
+                  "field": "Dose",
+                  "title": "Daily Vaccinations Count"
+                }
+              ]
+            },
+            "layer": [
+              {
+                "params": [
+                  {
+                    "name": "label",
+                    "select": {
+                      "type": "point",
+                      "encodings": ["x"],
+                      "nearest": true,
+                      "on": "mouseover"
+                    }
+                  }
+                ],
+                "mark": {
+                  "type": "point"
+                },
+                "encoding": {
+                  "opacity": {
+                    "condition": {
+                      "param": "label",
+                      "empty": false,
+                      "value": 1
+                    },
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          },
+
+          {
+            "mark": {
+              "type": "line"
+            },
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "scale": {"domain": {"param": "time_brush"}},
+                "axis": {"title": "Date", "tickCount": 6, "grid": false}
+              },
+              "y": {
+                "field": "New_case", 
+                "type": "quantitative", 
+                "title": "Count per 10,000 Population"
+              },
+              "color":{
+                "field":"colors",
+                "scale":{
+                  "range":["#A664B3"]
+                },
+                "legend":{
+                  "orient": "bottom",
+                  "labelFontSize": 12,
+                  "labelExpr": "'Daily New Cases'",
+                  "title": null,
+                  "symbolSize": 500
+                }
+              }
+            }
+          },
+
+          {
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "scale": {"domain": {"param": "time_brush"}},
+                "axis": {"title": "Date", "tickCount": 6, "grid": false}
+              },
+              "y": {
+                "field": "New_case", 
+                "type": "quantitative", 
+                "title": "Count per 10,000 Population"
+              },
+              "tooltip": [
+                {
+                  "field": "Date",
+                  "title": "Date",
+                  "timeUnit": "yearmonthdate"
+                },
+                {
+                  "field": "New_case",
+                  "title": "Number of New Cases"
+                },
+                {
+                  "field": "Dose",
+                  "title": "Daily Vaccinations Count"
+                }
+              ]
+            },
+            "layer": [
+              {
+                "mark": {
+                  "type": "point"
+                },
+                "encoding": {
+                  "opacity": {
+                    "condition": {
+                      "param": "label",
+                      "empty": false,
+                      "value": 1
+                    },
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "mark": {
+              "type": "text",
+              "dx": 140,
+              "dy": -115,
+              "fontSize": 11
+            },
+            "encoding": {
+              "text": {
+                "value": ["Daily cases peaks at", "around March 2022"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "width": "container",
+        "height": 60,
+        "transform": [{
+          "pivot": "Type",
+          "value": "Number_per_10000",
+          "groupby": ["Date"]
+        }],
+        "layer" :[
+          {
+          "title": "Drag for interested interval",
+          "params": [{
+            "name": "time_brush",
+            "select": {"type": "interval", "encodings": ["x"]}
+          }],
+            "mark": {
+                "type": "line",
+                "color": "#A664B3"
+            },
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "axis": {"title": "", "format": "%Y"}
+              },
+              "y": { 
+                "field": "New_case",
+                "type": "quantitative", 
+                "title": "Count per 10,000 Population"
+              }      
+            }
+          },
+          {
+            "mark": {
+                "type": "line",
+                "color": "#2FBCB3"
+            },
+            "encoding": {
+              "x": {
+                "field": "Date",
+                "timeUnit": "yearmonthdate",
+                "title": "Date"
+              },
+              "y": {
+                "field": "Dose", 
+                "type": "quantitative", 
+                "title": null
+              }      
+            }
+          }        
+        ]      
+      }
+    ],
+    
+    "config": {
+        "background": "#FFFBF7",
+        "font": "Poppins",
+        "padding": {
+            "top": 10,
+            "bottom": 10,
+            "right": -100
+          },
+        "view": {"stroke": null},
+        "axis": {
+          "grid": true,
+          "labelColor": "gray",
+          "titleColor": "gray",
+          "labelFontSize": 12,
+          "title": null
+        },
+        "legend": {
+          "titleColor": "gray",
+          "labelColor": "gray"
+        },
+        "title": {
+          "fontSize": 14
+        }
+    }
+}

@@ -1,78 +1,138 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-        "text": "Covid-19 Stay-at-Home Policy for Year 2020, 2021 and 2022",
-        "fontSize": 20
-      },
-    "data": {
-      "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W10/main/data/stay-at-home.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W10/main/data/stay-at-home.csv"
+  },
+  "height": 300,
+  "width": "container",
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "date",
+      "type": "ordinal"
     },
-    "height": 400,
-    "width": 600,
-  
-    "encoding": {
-      "x": {
-        "timeUnit": "year",
-        "field": "date",
-        "type": "ordinal",
-        "title": "Year"
-      },
-      "y": {
-        "aggregate": "count",
-        "type": "quantitative",
-        "stack":  "normalize",
-        "title": "Count of Countries with different Stay-at-Home policy"
-      }
-    },
-  
-    "layer": [
-      {
-        "params": [
-          {
-            "name": "policy_highlight",
-            "select": {"type": "point", "fields": ["policy"]},
-            "bind": "legend"
-          }
-        ],
-        "mark": "bar",
-          "encoding": {
-            "color": {
-              "field": "policy",
-              "type": "nominal",
-              "scale": {
-                "domain": ["No measures", "Recommended", "Required (except essentials)", "Required (few exceptions)"],
-                "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
-              },
-              "title": "Stay at home policy"
-            },
-            "opacity": {
-              "condition": {"param": "policy_highlight", "value": 1},
-              "value": 0.3
-            },
-            "tooltip": [
-            {"field": "policy", "title": "Policy", "type": "nominal"},
-            {"aggregate": "count", "field": "policy", "title": "Count of Countries", "type": "quantitative", "format": ","}
-          ]
-          }
-      },
-      {
-        "mark": {"type": "text", "opacity": 0.9, "color": "white"},
-        "encoding": {
-          "y": {
-            "aggregate": "count",
-            "field": "policy",
-            "type": "quantitative",
-            "stack":  "normalize",
-            "bandPosition": 0.5
-          },
-          "text": {
-            "aggregate": "count", 
-            "field": "policy"
-          },
-          "detail": {
-            "field": "policy"
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "stack": "normalize"
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "policy_highlight",
+          "select": {"type": "point", "fields": ["policy"]},
+          "bind": "legend"
+        },
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "on": "mouseover"
           }
         }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "policy",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "No measures",
+              "Recommended",
+              "Required (except essentials)",
+              "Required (few exceptions)"
+            ],
+            "range": ["#d3d3d3", "#2FBCB3", "#D7A8E0", "#A664B3"]
+          },
+          "title": "Stay at home policy"
+        },
+        "opacity": {
+          "condition": {"param": "policy_highlight", "value": 1},
+          "value": 0.3
+        },
+        "size":{
+          "condition":[{
+            "param": "highlight",
+            "empty": false,
+            "value": 60
+          }],
+          "value": 50
+        },
+        "tooltip": [
+          {"field": "policy", "title": "Policy", "type": "nominal"},
+          {
+            "aggregate": "count",
+            "field": "policy",
+            "title": "Count of Countries",
+            "type": "quantitative",
+            "format": ","
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "mark": {"type": "text", "opacity": 0.9, "color": "white"},
+      "encoding": {
+        "y": {
+          "aggregate": "count",
+          "field": "policy",
+          "type": "quantitative",
+          "stack": "normalize",
+          "bandPosition": 0.5
+        },
+        "text": {"aggregate": "count", "field": "policy"},
+        "detail": {"field": "policy"}
+      }
+    }
+  ],
+    "config": {
+      "background": "#FFFBF7",
+      "font": "Poppins",
+      "padding": {
+        "top": 40,
+        "bottom": 40,
+        "left": 40,
+        "right": 30
+      },
+      "view": {"stroke": null},
+      "axis": {
+        "grid": false,
+        "labelColor": "gray",
+        "labelFontSize": 15,
+        "title": null
+      },
+      "axisX": {
+        "orient": "bottom",
+        "offset": 5,
+        "domain": false,
+        "ticks": false
+      },
+      "axisY": {
+        "labels": false,
+        "domain": false,
+        "ticks": false,
+        "labelAlign": "left",
+        "labelPadding": 30
+      },
+      "legend": {
+        "titleFontSize": 12,
+        "labelFontSize": 12,
+        "titleColor": "gray",
+        "labelColor": "gray",
+        "direction": "vertical",
+        "orient": "right",
+        "gradientLength": 120,
+        "gradientThickness": 10,
+        "gradientLabelOffset": 5
+
+      },
+      "text": {"fontSize": 13},
+      "title": {
+        "fontSize": 20,
+        "offset": 20
+      }
+    }
+}
