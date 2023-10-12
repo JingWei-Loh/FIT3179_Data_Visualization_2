@@ -94,9 +94,7 @@
             "domain": [1, 10, 100, 1000, 2000, 3500],
             "scheme": "yellowgreenblue"
           },
-          "legend": {
-            "title": ["Cases per 10,000 population"]
-          }
+          "legend": {"title": ["Cases per 10,000 population"]}
         },
         "opacity": {"condition": {"param": "select", "value": 1}, "value": 0.2},
         "tooltip": [
@@ -112,13 +110,10 @@
     {
       "transform": [
         {
-            "calculate": "'France has; highest; active cases'",
-            "as": "annotation_ori"
+          "calculate": "'France has; highest; active cases'",
+          "as": "annotation_ori"
         },
-        {
-            "calculate": "split(datum.annotation_ori,';')",
-            "as": "annotation"
-        }
+        {"calculate": "split(datum.annotation_ori,';')", "as": "annotation"}
       ],
       "encoding": {
         "text": {"field": "annotation"},
@@ -135,34 +130,49 @@
         "y": {"value": 65}
       },
       "mark": {"type": "point"}
+    },
+    {
+      "transform": [
+        {
+          "calculate": "'Antarctica has; lowest; active cases'",
+          "as": "annotation_ori"
+        },
+        {"calculate": "split(datum.annotation_ori,';')", "as": "annotation"}
+      ],
+      "encoding": {
+        "text": {"field": "annotation"},
+        "color": {"value": "#C22134"},
+        "size": {"value": 10}
+      },
+      "mark": {"type": "text", "dx": 10, "dy": 145}
+    },
+    {
+      "encoding": {
+        "color": {"value": "#C22134"},
+        "size": {"value": 6},
+        "x": {"value": 460},
+        "y": {"value": 390}
+      },
+      "mark": {"type": "point"}
     }
-
   ],
   "config": {
-      "background": "#FFFBF7",
-      "font": "Poppins",
-      "padding": {
-        "top": 10,
-        "bottom": 10,
-        "left": 30,
-        "right": 30
-      },
-      "view": {"stroke": null},
-      "legend": {
-        "titleFontSize": 12,
-        "titleColor": "gray",
-        "labelColor": "gray",
-        "direction": "horizontal",
-        "orient": "bottom",
-        "gradientLength": 180,
-        "gradientThickness": 10,
-        "gradientLabelOffset": 5,
-        "offset": -70
-      },
-      "text": {"fontSize": 13},
-      "title": {
-        "fontSize": 20,
-        "offset": 5
-      }
-    }
+    "background": "#FFFBF7",
+    "font": "Poppins",
+    "padding": {"top": 10, "bottom": 10, "left": 30, "right": 30},
+    "view": {"stroke": null},
+    "legend": {
+      "titleFontSize": 12,
+      "titleColor": "gray",
+      "labelColor": "gray",
+      "direction": "horizontal",
+      "orient": "bottom",
+      "gradientLength": 180,
+      "gradientThickness": 10,
+      "gradientLabelOffset": 5,
+      "offset": -70
+    },
+    "text": {"fontSize": 13},
+    "title": {"fontSize": 20, "offset": 5}
+  }
 }

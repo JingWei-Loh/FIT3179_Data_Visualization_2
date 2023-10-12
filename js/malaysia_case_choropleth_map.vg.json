@@ -1,64 +1,100 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-      "text": "COVID-19 Active Cases in Malaysia (2023)",
-      "fontSize": 20
-    },
-    "projection": {"type": "equalEarth"},
-    "data": {
-      "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson",
-      "format": {"type": "topojson", "feature": "states"}
-    },
-    "height": 400,
-    "width": "container",
-    "transform": [
-      {
-        "lookup": "properties.Name",
-        "from": {
-          "data": {
-            "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W9/main/data/malaysia_cases_map_use.csv"
-          },
-          "key": "States",
-          "fields": ["Cases_per_10000"]
-        }
-      },
-      {"calculate": "datum.Cases_per_10000", "as": "Active Cases"}
-    ],
-    "mark": {"type": "geoshape", "stroke": "#eff3ff"},
-    "encoding": {
-      "color": {
-        "field": "Active Cases",
-        "type": "quantitative",
-        "scale": {"type": "log"}
-      },
-      "tooltip": [
-        {"field": "properties.Name", "type": "nominal", "title": "State"},
-        {"field": "Active Cases", "type": "quantitative", "title": "Cases per 10,000 population"}
-      ]
-    },
-    "config": {
-      "background": "#FFFBF7",
-      "font": "Poppins",
-      "padding": {
-          "top": 10,
-          "bottom": 10,
-          "left": 30,
-          "right": 30
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "COVID-19 Active Cases in Malaysia (2023)", "fontSize": 20},
+  "projection": {"type": "equalEarth"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson",
+    "format": {"type": "topojson", "feature": "states"}
+  },
+  "height": 400,
+  "width": "container",
+  "layer": [
+    {
+      "transform": [
+        {
+          "lookup": "properties.Name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W9/main/data/malaysia_cases_map_use.csv"
+            },
+            "key": "States",
+            "fields": ["Cases_per_10000"]
+          }
         },
-      "view": {"stroke": null},
-      "axis": {
-        "grid": true,
-        "labelColor": "gray",
-        "titleColor": "gray",
-        "labelFontSize": 12,
-        "title": null
-      },
-      "legend": {
-        "titleColor": "gray",
-        "labelColor": "gray"
-      },
-      "title": {
-        "fontSize": 14
+        {"calculate": "datum.Cases_per_10000", "as": "Active Cases"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "#eff3ff"},
+      "encoding": {
+        "color": {
+          "field": "Active Cases",
+          "type": "quantitative",
+          "scale": {"type": "log"},
+          "legend": {"title": ["Cases per 10,000 population"]}
+
+        },
+        "tooltip": [
+          {"field": "properties.Name", "type": "nominal", "title": "State"},
+          {
+            "field": "Active Cases",
+            "type": "quantitative",
+            "title": "Cases per 10,000 population"
+          }
+        ]
       }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "'Kuala Lumpur; has highest; active cases'",
+          "as": "annotation_ori"
+        },
+        {"calculate": "split(datum.annotation_ori,';')", "as": "annotation"}
+      ],
+      "encoding": {
+        "text": {"field": "annotation"},
+        "color": {"value": "#C22134"},
+        "size": {"value": 10}
+      },
+      "mark": {"type": "text", "dx": -360, "dy": 80}
+    },
+    {
+      "transform": [
+        {
+          "calculate": "'Sabah and Sarawak; has low number; of active cases'",
+          "as": "annotation_ori"
+        },
+        {"calculate": "split(datum.annotation_ori,';')", "as": "annotation"}
+      ],
+      "encoding": {
+        "text": {"field": "annotation"},
+        "color": {"value": "#C22134"},
+        "size": {"value": 10}
+      },
+      "mark": {"type": "text", "dx": 290, "dy": 20}
+    }
+  ],
+  "config": {
+    "background": "#FFFBF7",
+    "font": "Poppins",
+    "padding": {"top": 10, "bottom": 10, "left": 30, "right": 30},
+    "view": {"stroke": null},
+    "axis": {
+      "grid": true,
+      "labelColor": "gray",
+      "titleColor": "gray",
+      "labelFontSize": 12,
+      "title": null
+    },
+    "legend": {      
+      "titleFontSize": 12,
+      "titleColor": "gray",
+      "labelColor": "gray",
+      "direction": "horizontal",
+      "orient": "bottom-right",
+      "gradientLength": 180,
+      "gradientThickness": 10,
+      "gradientLabelOffset": 5
+    },
+    "title": {"fontSize": 14}
   }
-  }
+}

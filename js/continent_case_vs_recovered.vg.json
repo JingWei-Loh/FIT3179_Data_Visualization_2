@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/continent_cases_recovered.csv"
   },
-  "height": 200,
+  "height": 300,
   "width": "container",
   "encoding": {
     "x": {
@@ -42,8 +42,8 @@
           "title": "Type of Case"
         },
         "size": {
-          "condition": [{"param": "highlight", "empty": false, "value": 180}],
-          "value": 80
+          "condition": [{"param": "highlight", "empty": false, "value": 280}],
+          "value": 180
         },
         "opacity": {"value": 0.7},
         "tooltip": [
@@ -77,7 +77,7 @@
         "color": {"value": "black"},
         "size": {"value": 10}
       },
-      "mark": {"type": "text", "dx": 20, "dy": -50}
+      "mark": {"type": "text", "dx": 30, "dy": -60}
     }
   ],
   "config": {
@@ -87,7 +87,6 @@
     "view": {"stroke": null},
     "title": {"fontSize": 20, "offset": 20},
     "axis": {
-      "titleFontSize": 12,
       "labelFontSize": 12,
       "labelColor": "gray",
       "title": null
@@ -102,6 +101,7 @@
     "axisY": {
       "domain": false,
       "ticks": false,
+      "labelFontSize": 14,
       "labelPadding": 20,
       "titleFontSize": 12
     },

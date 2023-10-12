@@ -34,7 +34,7 @@
               "stroke":{
                 "field":"Type",
                 "scale":{
-                  "range":["#2FBCB3"]
+                  "range":["#FFAF4A"]
                 },
                 "legend":{
                   "orient": "none",
@@ -128,7 +128,7 @@
               "color":{
                 "field":"colors",
                 "scale":{
-                  "range":["#A664B3"]
+                  "range":["#024B7A"]
                 },
                 "legend":{
                   "orient": "bottom",
@@ -220,7 +220,7 @@
           }],
             "mark": {
                 "type": "line",
-                "color": "#A664B3"
+                "color": "#024B7A"
             },
             "encoding": {
               "x": {
@@ -238,7 +238,7 @@
           {
             "mark": {
                 "type": "line",
-                "color": "#2FBCB3"
+                "color": "#FFAF4A"
             },
             "encoding": {
               "x": {

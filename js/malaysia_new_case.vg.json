@@ -3,7 +3,6 @@
     "data": {
       "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/malaysia_cases_2.csv"
     },
-
     "width": "container",
     "params": [
       {
@@ -45,7 +44,7 @@
         "field": "New_case_per_10000",
         "type": "quantitative",
         "legend": {
-          "title": ["Cases per", " 10,000 population"]
+          "title": ["Cases per 10,000 population"]
         },
         "scale": {"type": "log"}
       },
@@ -101,9 +100,9 @@
         "titleFontSize": 12,
         "titleColor": "gray",
         "labelColor": "gray",
-        "direction": "vertical",
-        "orient": "right",
-        "gradientLength": 120,
+        "direction": "horizontal",
+        "orient": "top",
+        "gradientLength": 200,
         "gradientThickness": 10,
         "gradientLabelOffset": 5
       },
