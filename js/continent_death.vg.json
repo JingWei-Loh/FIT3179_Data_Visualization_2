@@ -4,12 +4,7 @@
   "data": {
         "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W10/main/data/continent_death.csv"
     },
-  "title": {
-    "text": "Comparative COVID-19 Deaths by Continent",
-    "fontSize": 15,
-    "offset": 30,
-    "anchor": "middle"
-  },
+"width": "container",
 "params": [
   {
     "name": "highlight",
@@ -18,7 +13,8 @@
 ],
   "mark": {
     "type": "arc", 
-    "innerRadius": 50,
+    "innerRadius": 80,
+    "outerRadius": 180,
     "stroke": "gray",
     "cursor": "pointer"
     },
@@ -37,8 +33,7 @@
                 ],
                 "titleFontSize": 12,
                 "direction": "vertical",
-                "orient": "right",
-                "padding": 30
+                "orient": "right"
               }
         },
     "tooltip": [
@@ -65,7 +60,7 @@
     "background": "#FFFBF7",
     "font": "Poppins",
     "padding": {
-        "top": 10,
+        "top": 30,
         "bottom": 10,
         "left": 30,
         "right": 30

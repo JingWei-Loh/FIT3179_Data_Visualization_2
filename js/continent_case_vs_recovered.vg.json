@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Data_Visualization_2/main/data/continent_cases_recovered.csv"
   },
-  "height": 150,
+  "height": 200,
   "width": "container",
   "encoding": {
     "x": {
@@ -59,7 +59,7 @@
       }
       
     },
-        {
+    {
       "transform": [
         {"filter":"datum.Continent == 'Europe'"},
         {"filter":"datum.Type == 'Total Recovered'"},

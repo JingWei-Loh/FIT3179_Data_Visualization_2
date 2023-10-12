@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/JingWei-Loh/FIT3179_Homework_W10/main/data/stay-at-home.csv"
   },
-  "height": 300,
+  "height": 350,
   "width": "container",
   "encoding": {
     "x": {
@@ -57,9 +57,9 @@
           "condition":[{
             "param": "highlight",
             "empty": false,
-            "value": 60
+            "value": 80
           }],
-          "value": 50
+          "value": 70
         },
         "tooltip": [
           {"field": "policy", "title": "Policy", "type": "nominal"},

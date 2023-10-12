@@ -24,8 +24,10 @@ p {
 }
 
 .title {
-    font-size: 50px;
+    font-size: 70px;
     text-align: center;
+    font-family: 'Unna', serif;
+    line-height: 0.5;
 }
 
 .small_title {
@@ -34,7 +36,7 @@ p {
 }
 
 .right_aligned {
-    text-align:right
+    text-align:right;
 }
 
 .countries_high_case {
