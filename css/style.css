@@ -7,7 +7,10 @@
 
 h2 {
     color:#3C3C3C;
+    font-family: 'Unna', serif;
     font-weight:500;
+    font-size: 30px;
+    line-height: 1.2;
 }
 
 h3 {
@@ -31,7 +34,8 @@ p {
 }
 
 .small_title {
-    font-size: 30px;
+    font-size: 40px;
+    font-family: 'Unna', serif;
     text-align: center;
 }
 
